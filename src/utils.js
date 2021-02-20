@@ -13,6 +13,7 @@ export const renderUsers = (users, fromIdx = 0) => (
 		<tbody>
 			{_.times(Math.min(users.length, maxUsersCountOnPage), (i) => {
 				const fullName = users[fromIdx + i];
+				if (!fullName) return null;
 				return (
 					<tr key={`${i}${fullName.slice(0, fullName.indexOf(' '))}`}>
 						<th scope="row">{i + 1}</th>
