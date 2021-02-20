@@ -74,7 +74,6 @@ class App extends React.Component {
 			order,
 		} = this.state;
 		const users = getUsers(filtredUsers, allUsers);
-		console.log('state=>', this.state);
 
 		return (
 			<div className="container">

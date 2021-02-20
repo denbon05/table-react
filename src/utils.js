@@ -21,7 +21,7 @@ export const renderUsers = (users, fromIdx = 0) => (
 				);
 				return (
 					<tr key={`${i}${fullName.slice(0, fullName.indexOf(' '))}`}>
-						<th scope="row">{i + 1}</th>
+						<th scope="row">{i + 1 + fromIdx}</th>
 						<td>{fullName}</td>
 					</tr>
 				);
