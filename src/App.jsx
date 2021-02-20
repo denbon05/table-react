@@ -51,12 +51,14 @@ class App extends React.Component {
 			userName.toLowerCase().includes(value.toLowerCase())
 		));
 		if (filtredUsers.length === 0 && value.length > 0) {
-			this.setState({ filtredUsers: ['No match for request'], pageCount: 1 });
+			this.setState({ filtredUsers: ['No match for request'], pageCount: 1, currentPage: 1 });
 			return;
 		}
 		this.setState({
 			filtredUsers,
 			pageCount: Math.ceil(filtredUsers.length / maxUsersCountOnPage),
+			currentPage: 1,
+			startIdxShowingUsers: 0,
 		});
 	};
 
