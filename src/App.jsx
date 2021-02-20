@@ -47,9 +47,13 @@ class App extends React.Component {
 		e.preventDefault();
 		const { allUsers } = this.state;
 		const { value } = e.target;
-		const filtredUsers = allUsers.filter((userName) =>
-			userName.includes(value)
-		);
+		const filtredUsers = allUsers.filter((userName) => (
+			userName.toLowerCase().includes(value.toLowerCase())
+		));
+		if (filtredUsers.length === 0 && value.length > 0) {
+			this.setState({ filtredUsers: ['No match for request'], pageCount: 1 });
+			return;
+		}
 		this.setState({
 			filtredUsers,
 			pageCount: Math.ceil(filtredUsers.length / maxUsersCountOnPage),
@@ -70,6 +74,7 @@ class App extends React.Component {
 			order,
 		} = this.state;
 		const users = getUsers(filtredUsers, allUsers);
+		console.log('state=>', this.state);
 
 		return (
 			<div className="container">

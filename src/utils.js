@@ -14,6 +14,11 @@ export const renderUsers = (users, fromIdx = 0) => (
 			{_.times(Math.min(users.length, maxUsersCountOnPage), (i) => {
 				const fullName = users[fromIdx + i];
 				if (!fullName) return null;
+				if (fullName.includes('No match')) return (
+					<tr>
+						<th className="text-warning" scope="row" colSpan="2">{fullName}</th>
+					</tr>
+				);
 				return (
 					<tr key={`${i}${fullName.slice(0, fullName.indexOf(' '))}`}>
 						<th scope="row">{i + 1}</th>
@@ -25,5 +30,6 @@ export const renderUsers = (users, fromIdx = 0) => (
 	</table>
 );
 
-export const getUsers = (filtredUsers, allUsers) =>
-	filtredUsers.length > 0 ? filtredUsers : allUsers;
+export const getUsers = (filtredUsers, allUsers) => (
+	filtredUsers.length > 0 ? filtredUsers : allUsers
+);
